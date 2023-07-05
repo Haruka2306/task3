@@ -3,19 +3,21 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Map<String, String> studentMap = new HashMap<>();
-        studentMap.put("山田", "英語: 90, 数学: 60");
-        studentMap.put("佐藤", "英語: 70, 数学: 100");
+        Map<String, String> studentMaps = new HashMap<>();
+        studentMaps.put("yamada", "英語: 90, 数学: 60");
+        studentMaps.put("sato", "英語: 70, 数学: 100");
+        studentMaps.put("tanaka", "英語: 70, 数学: 100");
 
-        for (Map.Entry<String, String> studentEntry : studentMap.entrySet()) {
-            System.out.println(studentEntry.getKey() + "さん　" + studentEntry.getValue());
-        }
+        studentMaps.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(System.out::println);
+
 
         System.out.println("名前検索");
         String name = new java.util.Scanner(System.in).nextLine();
 
         String result;
-        result = studentMap.get(name);
+        result = studentMaps.get(name);
 
         try {
             if (result != null) {
